@@ -1,0 +1,31 @@
+CREATE TABLE inventory (id INTEGER PRIMARY KEY, name TEXT, price REAL, units_sold INTEGER, units_in_stock INTEGER);
+
+INSERT INTO inventory VALUES (1, "Face Wash", 20.99, 10, 15);
+INSERT INTO inventory VALUES (2, "Moisturizer for Oily Skin", 27.99, 14, 20);
+INSERT INTO inventory VALUES (3, "Face Sunscreen", 20.99, 11, 14);
+INSERT INTO inventory VALUES (4, "Vitamn C Serum", 39.99, 20, 5);
+INSERT INTO inventory VALUES (5, "Moisturizer for Dry Skin", 27.99, 20, 20);
+INSERT INTO inventory VAlUES (6, "Eye Cream", 30.99, 6, 15);
+INSERT INTO inventory VALUES (7, "'Starry' Hand Balm", 19.99, 19, 3);
+INSERT INTO inventory VALUES (8, "'PlumP' Lip Balm", 10.99, 30, 10);
+INSERT INTO inventory VALUES (9, "Shave Soap - Ramblin' Man", 5.99, 10, 20);
+INSERT INTO inventory VALUES (10, "Shave Soap - Flare", 5.99, 7, 23);
+INSERT INTO inventory VALUES (11, "Body Lotion", 19.99, 20, 5);
+INSERT INTO inventory VALUES (12, "Pre Shave Cream", 14.99, 15, 15);
+INSERT INTO inventory VALUES (13, "Aftershave", 14.99, 20, 10);
+INSERT INTO inventory VALUES (14, "Exfoliating Mask", 25.99, 25, 5);
+INSERT INTO inventory VALUES (15, "Cuticle Oil", 15.99, 10, 10);
+
+--Display the database ordered by price.
+SELECT * FROM inventory
+    ORDER BY price;
+
+--Total amount of units sold from the store.
+SELECT SUM(units_sold)
+  FROM inventory;
+
+--Displayed the top 10 products that sold the most amount of units.
+SELECT name, units_sold
+    FROM inventory
+        ORDER BY units_sold DESC
+            LIMIT 10;
