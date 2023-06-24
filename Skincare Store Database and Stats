@@ -15,6 +15,7 @@ INSERT INTO inventory VALUES (12, "Pre Shave Cream", 14.99, 15, 15);
 INSERT INTO inventory VALUES (13, "Aftershave", 14.99, 20, 10);
 INSERT INTO inventory VALUES (14, "Exfoliating Mask", 25.99, 25, 5);
 INSERT INTO inventory VALUES (15, "Cuticle Oil", 15.99, 10, 10);
+INSERT INTO inventory VALUES (16, "Cum", 19.99, 20, 20);
 
 --Display the database ordered by price.
 SELECT * FROM inventory
