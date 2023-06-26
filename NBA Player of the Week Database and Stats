@@ -24,13 +24,36 @@ SELECT team, player, age, draft_year FROM players
     ORDER BY age
     LIMIT 5;
     
-/*Who are the tall and short players of the week from the LAL?*/
+/* What are the average, max, and min heights of the NBA Players of the Week? */
+
+SELECT Player, Team, MAX(Height) FROM players;
+
+SELECT Player, Team, MIN(Height) FROM players;
+
+SELECT ROUND(AVG(CAST(height_cm AS FLOAT)), 2) AS avg_height_cm FROM players;
+
+/* How many players of the week has each team had since 1980-2020? */
+
+SELECT team, COUNT(team) AS players FROM players GROUP BY team;
+
+/* Who are the 5 youngest players of the week? Using HAVING. */
+
+SELECT team, player, age, draft_year FROM players 
+    GROUP BY team
+    HAVING age BETWEEN 17 AND 30
+    ORDER BY age
+    LIMIT 5;
     
-SELECT player, age, height,
+/*Who are the tall, average height, and short players of the week from the Los Angeles Lakers?*/
+    
+SELECT player, age, height, team,
     CASE
-        WHEN height_cm <= 185.42 AND team = "Los Angeles Lakers" THEN "Short Laker"
-        WHEN height_cm >= 205.82 AND team = "Los Angeles Lakers" THEN "Tall Laker"
-        ELSE "Average Height Laker"
-    END as "lakers_players_height"
+        WHEN team = 'Los Angeles Lakers' AND Height_CM <= 185.42 THEN 'Short Laker'
+        WHEN team = 'Los Angeles Lakers' AND Height_CM >= 205.82 THEN 'Tall Laker'
+        WHEN team = 'Los Angeles Lakers' AND Height_CM >= 185.42 <= 205.82 THEN 'Average Height Laker'
+    ELSE 'Short'
+    END as 'lakers_players_height'
 FROM players
-GROUP BY "lakers_player_height";
+WHERE team LIKE '%Los Angeles Lakers%'
+GROUP BY player;
+    
