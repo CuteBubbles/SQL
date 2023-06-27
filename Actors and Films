@@ -1,0 +1,64 @@
+/* Create table about different actors and their films */
+CREATE TABLE actors (id INTEGER PRIMARY KEY,
+    fullname TEXT,
+    email TEXT,
+    phone TEXT,
+    birthdate TEXT);
+
+INSERT INTO actors (fullname, email, phone, birthdate)
+    VALUES ("John Krasinski", "john@krasinski.com", "555-6666", "1979-10-20");
+INSERT INTO actors (fullname, email, phone, birthdate)
+    VALUES ("Emily Blunt", "emily@blunt.com", "555-4444", "1983-02-23");
+INSERT INTO actors (fullname, email, phone, birthdate)
+    VALUES ("Tom Cruise", "tom@cruise.com", "555-3333", "1962-07-03");
+INSERT INTO actors (fullname, email, phone, birthdate)
+    VALUES ("Nicole Kidman", "nicole@kidman.com", "555-1111", "1967-06-20");
+INSERT INTO actors (fullname, email, phone, birthdate)
+    VALUES ("Javier Bardem", "javier@bardem.com", "555-6666", "1969-03-01");
+INSERT INTO actors (fullname, email, phone, birthdate)
+    VALUES ("Penelope Cruz", "penelope@cruz.com", "555-6666", "1974-04-24");
+    
+CREATE TABLE films (id INTEGER PRIMARY KEY,
+    actor_id INTEGER,
+    title TEXT);
+    
+INSERT INTO films (actor_id, title)
+    VALUES (1, "Detroit");
+INSERT INTO films (actor_id, title)
+    VALUES (2, "Sicario");
+INSERT INTO films (actor_id, title)
+    VALUES (3, "The Last Samurai");
+INSERT INTO films (actor_id, title)
+    VALUES (4, "The Northman");
+INSERT INTO films (actor_id, title)
+    VALUES (5, "No Country for Old Men");
+INSERT INTO films (actor_id, title)
+    VALUES (6, "Murder on the Orient Express");
+    
+CREATE TABLE film_pairs (id INTEGER PRIMARY KEY,
+    film1_id INTEGER,
+    film2_id INTEGER);
+
+INSERT INTO film_pairs (film1_id, film2_id)
+    VALUES(1, 2);
+INSERT INTO film_pairs (film1_id, film2_id)
+    VALUES(3, 4);
+INSERT INTO film_pairs (film1_id, film2_id)
+    VALUES(5, 6);
+
+/* What actors are in which movies? */
+
+SELECT a.fullname, f.title
+    FROM actors a
+    LEFT OUTER JOIN films f
+    ON a.id=f.id
+    ORDER BY title;
+    
+/* Which actors were/are married to which? */
+
+SELECT a.fullname, aa.fullname
+FROM actors a
+JOIN film_pairs fp
+ON fp.film1_id=a.id
+JOIN actors aa
+ON fp.film2_id=aa.id;
