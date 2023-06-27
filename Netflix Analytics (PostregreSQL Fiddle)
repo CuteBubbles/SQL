@@ -1,0 +1,28 @@
+/* How many movie titles are there in the database? (movies only, not tv shows) */
+SELECT
+    COUNT(*),  --total
+    SUM(CASE WHEN type = 'Movie' THEN 1 ELSE 0 END) --conditional
+FROM
+    "netflix_titles_info";
+
+/* When was the most recent batch of tv shows and/or movies added to the database? */
+SELECT title, date_added, type 
+  FROM netflix_titles_info
+  ORDER BY date_added DESC;
+
+/* List all the movies and tv shows in alphabetical order. */
+SELECT title
+FROM "netflix_titles_info"
+ORDER BY title ASC;
+
+/* Who was the Director for the movie The Starling? */
+SELECT nt.title, np.director
+FROM "netflix_titles_info" AS nt
+JOIN "netflix_people" AS np
+ON nt.show_id = np.show_id
+WHERE nt.title='The Starling'; 
+
+/* What is the oldest movie in the database and what year was it made? */
+SELECT title, release_year
+FROM "netflix_titles_info"
+ORDER BY release_year; 
