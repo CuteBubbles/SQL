@@ -1,4 +1,9 @@
 /* How many movie titles are there in the database? (movies only, not tv shows) */
+SELECT count(*) 
+FROM "netflix_titles_info"
+WHERE type='Movie';
+
+--Alternatively
 SELECT
     COUNT(*),  --total
     SUM(CASE WHEN type = 'Movie' THEN 1 ELSE 0 END) --conditional
