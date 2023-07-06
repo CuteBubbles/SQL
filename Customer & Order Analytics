@@ -48,6 +48,7 @@ SELECT count(distinct cust.acctnum), AVG(quantity*price)
   AND orderid <> 'Order ID'
 
 #8. List all the products sold in Los Angeles in February, and include how many of each were sold.
-SELECT Product, Quantity, Location
+SELECT Product, sum(Quantity) AS Total_Sold, Location
 FROM BIT_DB.FebSales 
 WHERE Location like '%Los Angeles%'
+GROUP BY product
